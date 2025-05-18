@@ -1,11 +1,13 @@
 let previusInput='';
 let currentInput="";
 let operator = "";
+let eval = false;
 const screen = document.querySelector(".screen");
 let numbers = document.querySelectorAll(".number");
 
 numbers.forEach(number=>{
     number.addEventListener("click",()=>{
+        if(eval===false){
         if(previusInput===""){
         screen.textContent=screen.textContent+number.textContent;
         }
@@ -14,6 +16,13 @@ numbers.forEach(number=>{
             currentInput=currentInput+number.textContent;
             
         }
+    }
+    else if(eval===true){
+    
+        screen.textContent="";
+        screen.textContent=screen.textContent+number.textContent;
+        eval=false;
+    }
     })
 })
 let operators = document.querySelectorAll(".operator");
@@ -83,7 +92,7 @@ else if(previusInput!==""){
                 operator="";
                 screen.textContent=previusInput;
                 currentInput="";
-                
+               
                 
             }
             else if(operator==="-"){
@@ -93,7 +102,7 @@ else if(previusInput!==""){
                 operator="";
                 screen.textContent=previusInput;
                 currentInput="";
-                
+            
             }
             else if(operator==="*"){
                 previusInput=Number(previusInput)*Number(currentInput);
@@ -104,6 +113,7 @@ else if(previusInput!==""){
                 currentInput="";
                 
                 
+                
             }
             else if(operator==="/"){
                 previusInput=Number(previusInput)/Number(currentInput);
@@ -112,8 +122,10 @@ else if(previusInput!==""){
                 operator="";
                 screen.textContent=previusInput;
                 currentInput="";
-                
+            
                 
             }
+             eval=true;
+                
 }
 })
